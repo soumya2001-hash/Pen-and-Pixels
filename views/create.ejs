@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post your thoughts</title>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+    <%- include("header.ejs") %>
+    
+    <h1 class="submit-header">Publish your thoughts</h1>
+    <% if(locals.post){ %>
+        <form action="/create-post" id="submit-form" method="POST">
+            <input name="author" placeholder="What should we call you?" class="input" required value="<%= post ? post.author : '' %>">
+            <input type="text" name="title" placeholder="Give a title to your post" class="input" required value="<%= post ? post.title : '' %>" >
+            <textarea name="content" placeholder="Place your thoughts here and remember to add \n\n at each new paragraph." class="input input-text-area" required ><%= post ? post.content : '' %></textarea>
+            <button type="submit" class="btn btn-card">Update</button>
+        </form>
+    <% } else { %>
+        <form action="/create-post" id="submit-form" method="POST">
+            <input name="author" placeholder="What should we call you?" class="input" required >
+            <input type="text" name="title" placeholder="Give a title to your post" class="input" required >
+            <textarea name="content" placeholder="Place your thoughts and remember to add \n\n at each new paragraph" class="input input-text-area" required ></textarea>
+            <button type="submit" class="btn btn-card">Post</button>
+        </form>
+    <% } %>
+</body>
+</html>

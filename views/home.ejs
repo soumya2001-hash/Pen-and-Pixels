@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pen & Pixels</title>
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+        <%- include("header.ejs") %>
+
+        <div class="hero-container">
+            <div class="hero content">
+                <p>Hello Everyone!</p>
+                <h1>I'm <span class="span">Soumya Hegde</span></h1>
+                <p>This website is a project for Web Development course I am studying.</p> 
+                <p>I hope this becomes a safe space for your thoughts, stories and ideas<br> as it is for mine.</p>
+            </div>
+            <div class="hero cartoon">
+                <img src="images/cartoon.png" alt="cartoon writing image">
+            </div>
+        </div>
+        
+        <h2 class="card-header">Trending posts</h2>
+        <div class="card-container">
+            <% if(posts.length<3){ %>
+                <% posts.forEach(element => { %>
+                    <div class="card">
+                        <img src="images/notebook.jpg?v=1.0">
+                        <div class="card-content">
+                            <h3>
+                                <a href="/post/<%= element.id %>" class="no-underline"><%= element.title %></a>
+                            </h1>
+                            <p>By <span class="more-text"><%= element.author %></span> Updated on <%= element.date %></p>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <% for(let i = 0; i<3 ; i++){ %>
+                    <div class="card">
+                        <img src="images/notebook.jpg?v=1.0">
+                        <div class="card-content">
+                            <h3>
+                                <a href="/post/<%= posts[i].id %>" class="no-underline"><%= posts[i].title %></a>
+                            </h1>
+                            <p>By <span class="more-text"><%= posts[i].author %></span> Updated on <%= posts[i].date %></p>
+                        </div>
+                    </div>
+                <% }  %>
+            <% }; %>
+        </div>
+        <div class="show-all">
+            <a href="/show-all" class="btn show-more no-underline">Show more posts →</a>
+        </div>
+    
+    <%- include("contact.ejs") %>
+    <%- include("footer.ejs") %>
+    
+    
+    <!-- <script src="/script.js"></script> -->
+</body>
+</html>

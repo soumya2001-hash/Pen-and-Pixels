@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pen & Pixels  Blogs</title>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+    <%- include("header.ejs") %>
+
+    <% if(locals.blogs) { %>
+            <div class="card-show-all">
+                <% blogs.forEach(element => { %>
+            
+                    <div class="card_show_all">
+                        <div class="image">
+                            <img src="images/notebook.jpg?v=1.0">
+                        </div>
+                        <div class="card-content show-all">
+                            <h3>
+                                <a href="/post/<%= element.id %>" class="no-underline"><%= element.title %></a>
+                            </h3>
+                            <p>By <span class="more-text"><%= element.author %></span> Updated on <%= element.date %></p>
+                            <p><%= element.content.slice(0,element.content.indexOf(".")) %>.</p>
+                        </div>
+                        <div class="edit-delete">
+                            <a href="/post/edit/<%= element.id %>" class=" btn-edit-delete no-underline">Edit</a>
+                            <a href="/post/delete/<%= element.id %>" class=" btn-edit-delete no-underline">Delete</a>
+                        </div>
+                    </div>
+                
+            <%  }); %>
+    
+            </div>
+    <% } else{ %>
+        <h2> Sorry Nothing to show!! </h2>
+    <% } %>
+    <div class="show-all">
+        <a href="/" class="btn btn-card no-underline">Back</a> 
+    </div>
+</body>
+</html>
